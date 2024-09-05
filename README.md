@@ -22,8 +22,10 @@ The "PetClinic" project is a web application developed using Angular, Angular Ma
 
 - ![Angular](https://img.shields.io/badge/-Angular-E23237?style=flat-square&logo=angular&logoColor=white) Angular - Framework for building dynamic single-page applications.
 - ![Angular Material](https://img.shields.io/badge/-Angular%20Material-00796B?style=flat-square&logo=angular&logoColor=white) Angular Material - Component library implementing Material Design for Angular.
--  ![Angular Calendar](https://img.shields.io/badge/-Angular%20Calendar-007ACC?style=flat-square&logo=angular&logoColor=white) Angular Calendar - Calendar component for managing and displaying appointments.
+- ![Angular Calendar](https://img.shields.io/badge/-Angular%20Calendar-007ACC?style=flat-square&logo=angular&logoColor=white) Angular Calendar - Calendar component for managing and displaying appointments.
 - ![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3&logoColor=white) CSS - Style sheet language for custom styling of web pages.
+- ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white) TypeScript - Superset of JavaScript providing static typing.
+- ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat-square&logo=html5&logoColor=white) HTML - Markup language for creating web pages.
 - ![SweetAlert2](https://img.shields.io/badge/-SweetAlert2-7C4DFF?style=flat-square&logo=sweetalert2&logoColor=white) SweetAlert2 - Library for interactive and customizable alerts and notifications.
 - ![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white) Visual Studio Code - Source-code editor used for development.
 
