@@ -1,27 +1,32 @@
-# AppAngular
+# PetClinic
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.6.
+Veterinary Clinic Management.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+The "PetClinic" project is a web application developed using Angular, Angular Material, and pure CSS for custom styling. It focuses on managing various aspects of a veterinary clinic, including maintenance, billing, security, reservations (or appointments), and an integrated agenda created with Angular Calendar. The application also utilizes SweetAlert2 for interactive notifications and toast messages. With a goal of streamlining clinic operations, "PetClinic" provides a user-friendly interface for managing client interactions, scheduling appointments, and handling billing processes.
 
-## Code scaffolding
+### Key Components:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Angular**: The primary framework used for building dynamic and responsive web applications.
+- **Angular Material**: A component library that implements Google's Material Design, providing pre-built UI components for a modern user interface.
+- **CSS**: Used for custom styling and design of the application.
+- **SweetAlert2**: Utilized for interactive and visually appealing notifications and toast messages.
+- **Angular Calendar**: Integrated to manage and display scheduling and appointments effectively.
+- **Maintenance**: Tools and interfaces for managing the clinic's operational aspects.
+- **Billing**: Features for handling financial transactions and invoicing.
+- **Security**: Implemented to ensure secure access and data protection.
+- **Reservations/Appointments**: System for scheduling and managing client appointments.
 
-## Build
+## Technologies Used
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- ![Angular](https://img.shields.io/badge/-Angular-E23237?style=flat-square&logo=angular&logoColor=white) Angular - Framework for building dynamic single-page applications.
+- ![Angular Material](https://img.shields.io/badge/-Angular%20Material-00796B?style=flat-square&logo=angular&logoColor=white) Angular Material - Component library implementing Material Design for Angular.
+- ![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat-square&logo=css3&logoColor=white) CSS - Style sheet language for custom styling of web pages.
+- ![SweetAlert2](https://img.shields.io/badge/-SweetAlert2-7C4DFF?style=flat-square&logo=sweetalert2&logoColor=white) SweetAlert2 - Library for interactive and customizable alerts and notifications.
+- ![Angular Calendar](https://img.shields.io/badge/-Angular%20Calendar-007ACC?style=flat-square&logo=angular&logoColor=white) Angular Calendar - Calendar component for managing and displaying appointments.
+- ![Visual Studio Code](https://img.shields.io/badge/-Visual%20Studio%20Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white) Visual Studio Code - Source-code editor used for development.
 
-## Running unit tests
+## Integration with API
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The "PetClinic" project integrates with a backend API to perform various operations such as managing client data, scheduling appointments, and handling billing. The frontend communicates with the backend through Angular services, which facilitate interaction with the API endpoints and ensure smooth data exchange between the client and server.
