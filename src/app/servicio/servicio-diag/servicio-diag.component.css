@@ -1,0 +1,80 @@
+mat-dialog-content {
+  line-height: 1.5em;
+  padding: 1.5em;
+}
+
+.close-button {
+  top: 0;
+  right: -94%;
+}
+
+.close-icon {
+  transition: 1s ease-in-out;
+}
+
+.dialog-headline {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  margin-bottom: 0;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: #058a78; /*Color anterior: deepskyblue*/
+  color: white;
+}
+
+.code {
+  text-align: center;
+  width: 100%;
+}
+
+.description {
+  margin: 3px;
+  font-size: 30px;
+}
+
+.content-container {
+  padding-top: 1em;
+  text-align: left;
+  line-height: 1.5em;
+}
+
+.details-container {
+  margin: 0 1%;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.price {
+  text-align: center;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 2.5em;
+  margin-bottom: 50px;
+}
+
+.status {
+  text-align: center;
+  padding: 5px;
+  font-weight: 800;
+  font-size: 2.5em;
+  margin-bottom: 50px;
+}
+
+.activo {
+  color: #46a35e;
+}
+
+.inactivo {
+  color: #e74c3c;
+}

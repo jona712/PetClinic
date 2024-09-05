@@ -1,0 +1,93 @@
+.form {
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mid-width {
+    width: 50%;
+  }
+  
+  .shipping-card {
+    min-width: 120px;
+    margin: 20px auto;
+    padding: 5px;
+    height: auto;
+  }
+  
+  .mat-radio-button {
+    display: block;
+    margin: 5px 0;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .col:last-child {
+    margin-right: 0;
+  }
+  
+  .example-button-row {
+    display: table-cell;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+  }
+
+  .subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .subtitle h2 {
+    margin: 0; /* Elimina el margen por defecto del h2 */
+  }
+  
+  .date {
+    font-size: 1rem; /* Ajusta el tamaño de la fuente según sea necesario */
+    color: rgba(0, 0, 0, 0.6); /* Ajusta el color según sea necesario */
+  }
+  
+  .input-label {
+    font-weight: bold;
+    margin-bottom: 4px;
+    display: block;
+  }
+  
+  .green-button {
+    background-color: green !important;
+    color: white !important; /* Color del texto */
+  }
+
+  
+  .estado-reserva {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .estado-circle {
+    display: inline-block;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    margin: 0 8px; /*0 Margen arriba/abajo, 8px de margen izquierda/derecha */
+  }
+  
+  .estado-text {
+    font-weight: bold;
+    font-size: 18px;
+  }
+

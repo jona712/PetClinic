@@ -1,0 +1,135 @@
+<mat-card class="box">
+  <mat-card-header class="header">
+    <div class="row full-width">
+      <div class="col mid-width">
+        <h1>Carrito Compras</h1>
+      </div>
+      <div class="col mid-width">
+        <h1>Fecha: {{ fecha | date : "dd/MM/yyyy" }}</h1>
+      </div>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content *ngIf="dataSource" class="header">
+    <mat-table [dataSource]="dataSource" class="full-width-table table">
+      <ng-container matColumnDef="producto">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: #058a78; color: #fff"
+        >
+          Producto
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <!--  Nombre Producto -->
+          {{ element.item.nombre }}
+        </mat-cell>
+
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="precio">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: #058a78; color: #fff"
+        >
+          Precio
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <!--  Precio Producto -->
+          {{ element.item.precio | currency : "₡" }}
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: #058a78; color: #fff"
+        >
+          Cantidad
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-form-field appearance="fill">
+            <input
+              class="cant"
+              matInput
+              type="number"
+              min="0"
+              [value]="element.cantidad"
+              (keydown)="onKeyDown($event)"
+              (change)="onCantidadChange($event, element)"
+            />
+          </mat-form-field>
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef class="footer-total"
+          >Total
+        </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="impuesto">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: #058a78; color: #fff"
+        >
+          Impuesto
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <!--  Precio Producto -->
+          {{ element.impuesto }}%
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="totalLinea">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: #058a78; color: #fff"
+        >
+          Total Línea
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <!--  Subtotal -->
+          {{ element.totalLinea | currency }}
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef class="footer-total">
+          <!--Total -->
+          {{ total | currency }}
+        </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <mat-header-cell
+          *matHeaderCellDef
+          style="background-color: #058a78; color: #fff"
+        >
+          Acciones</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            (click)="deleteItem(element.id, element.estado)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row
+        *matHeaderRowDef="displayedColumns"
+        class="header"
+      ></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-footer-row
+        *matFooterRowDef="displayedColumns"
+        class="footer-row"
+      ></mat-footer-row>
+    </mat-table>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button *ngIf="isAuthenticated" mat-flat-button color="primary" (click)="addInvoice()">
+      Ir a Facturar
+      <mat-icon>shopping_bag</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

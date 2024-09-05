@@ -1,0 +1,183 @@
+<form
+  class="form"
+  [formGroup]="sucursalForm"
+  (ngSubmit)="submitSucursal()"
+  novalidate
+>
+  <input type="hidden" formControlName="id" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <h1>{{ titleForm }} Sucursal - Información</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row" style="margin-top: 1rem">
+        <div class="col">
+          <label class="input-label" for="nombre">Nombre de la sucursal</label>
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="nombre"
+              placeholder="Descripción"
+            />
+            <mat-error *ngIf="errorHandling('nombre')">
+              {{ errorHandling("nombre") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="descripcion"
+            >Descripción de la sucursal</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="descripcion"
+              placeholder="Descripción"
+            />
+            <mat-error *ngIf="errorHandling('descripcion')">
+              {{ errorHandling("descripcion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="telefono"
+            >Teléfono de la sucursal</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              id="telefono"
+              matInput
+              formControlName="telefono"
+              placeholder="Teléfono"
+              maxlength="8"
+              (keydown)="onKeyDown($event)"
+            />
+            <mat-error *ngIf="errorHandling('telefono')">
+              {{ errorHandling("telefono") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="direccion"
+            >Dirección de la sucursal</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              id="direccion"
+              matInput
+              formControlName="direccion"
+              placeholder="Dirección"
+            />
+            <mat-error *ngIf="errorHandling('direccion')">
+              {{ errorHandling("direccion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="correo"
+            >Correo electrónico de la sucursal</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="correo"
+              placeholder="Correo electrónico"
+            />
+            <mat-error *ngIf="errorHandling('correo')">
+              {{ errorHandling("correo") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <br />
+
+      <mat-divider></mat-divider>
+      <h1>Administración - Seleccionar Encargados</h1>
+      <br />
+      @if (isCreate) {
+      <div class="col ">
+        <label class="input-label" for="encargadosDisponibles"
+          >Encargados disponibles para la sucursal</label
+        >
+        <mat-form-field class="mid-width">
+          <mat-label>Encargados disponibles</mat-label>
+          <mat-select formControlName="encargadosDisponibles" multiple>
+            <mat-option
+              *ngFor="let encargado of encargadosDisponiblesList"
+              [value]="encargado.id"
+            >
+              {{ encargado.nombre }}
+            </mat-option>
+          </mat-select> 
+        </mat-form-field>
+      </div>
+      }@else {
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="encargados"
+            >Encargados actuales de la sucursal</label
+          >
+          <mat-form-field class="full-width">
+            <mat-label>Encargados actuales</mat-label>
+            <mat-select formControlName="encargados" multiple>
+              <mat-option
+                *ngFor="let encargado of encargadosList"
+                [value]="encargado.id"
+              >
+                {{ encargado.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="encargadosDisponibles"
+            >Encargados disponibles para la sucursal</label
+          >
+          <mat-form-field class="full-width">
+            <mat-label>Encargados disponibles</mat-label>
+            <mat-select formControlName="encargadosDisponibles" multiple>
+              <mat-option
+                *ngFor="let encargado of encargadosDisponiblesList"
+                [value]="encargado.id"
+              >
+                {{ encargado.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      }
+    </mat-card-content>
+
+    <mat-card-header>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Regresar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          <mat-icon>delete</mat-icon>
+          Limpiar
+        </button>
+        <button mat-raised-button class="green-button" type="submit">
+          <mat-icon>check</mat-icon>
+          Confirmar
+        </button>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</form>

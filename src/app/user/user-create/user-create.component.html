@@ -1,0 +1,145 @@
+<form [formGroup]="formCreate" novalidate>
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Crear Usuario</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Nombre usuario"
+              formControlName="nombre"
+            />
+            <mat-error *ngIf="errorHandling('nombre')">
+              {{ errorHandling("nombre") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Email usuario"
+              formControlName="email"
+            />
+            <mat-error *ngIf="errorHandling('email')">
+              {{ errorHandling("email") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              [type]="hide ? 'password' : 'text'"
+              placeholder="Password usuario"
+              formControlName="password"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error *ngIf="errorHandling('password')">
+              {{ errorHandling("password") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <mat-form-field class="full-width">
+                <mat-label>Teléfono</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  placeholder="Teléfono usuario"
+                  formControlName="telefono"
+                />
+                <mat-error *ngIf="errorHandling('telefono')">
+                  {{ errorHandling("telefono") }}
+                </mat-error>
+              </mat-form-field>
+              
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Dirección</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Dirección usuario"
+              formControlName="direccion"
+            />
+            <mat-error *ngIf="errorHandling('direccion')">
+              {{ errorHandling("direccion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [min]="minDate"
+              [max]="maxDate"
+              placeholder="Fecha de nacimiento usuario"
+              formControlName="nacimiento"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="errorHandling('nacimiento')">
+              {{ errorHandling("nacimiento") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Rol</mat-label>
+            <mat-select placeholder="Rol" formControlName="rol">
+              <mat-option *ngFor="let r of roles" [value]="r.id">
+                {{ r.nombre }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('rol')">
+              {{ errorHandling("rol") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submitForm()">
+        Registrar
+      </button>
+      <button mat-raised-button color="accent" type="reset" (click)="onReset()">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

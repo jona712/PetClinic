@@ -1,0 +1,53 @@
+<button
+  mat-icon-button
+  class="close-button"
+  [mat-dialog-close]="true"
+  matTooltip="Cerrar"
+>
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+@if(datos){
+<div>
+  <div class="dialog-headline">
+    <!-- Agregar el nombre de la Sucursal
+      -->
+    <strong class="description">{{ datos.diaSemana }}</strong>
+    <!-- <span>Horario: {{ datos.id }}</span> -->
+  </div>
+  <mat-dialog-content class="content-container">
+    <div class="details-container">
+      <div class="info-container">
+        <div>
+          <div class="info">
+            <mat-icon>calendar_today</mat-icon>
+            <h3>Fecha:</h3>
+          </div>
+          {{ datos.fecha }}
+        </div>
+        <div>
+          <div class="info">
+            <mat-icon>access_time</mat-icon>
+            <h3>Horario:</h3>
+          </div>
+          {{ datos.horaInicio }} - {{ datos.horaFin }}
+        </div>
+
+      </div>
+      <br />
+      <mat-divider></mat-divider>      
+      <div>
+        <h2>Tipo:</h2>
+        <div
+          [ngClass]="{ horario: datos.tipoHorario, bloqueo: !datos.tipoHorario }"
+          class="status"
+        >
+          <mat-icon>{{
+            datos.tipoHorario ? "check_circle" : "highlight_off"
+          }}</mat-icon>
+          {{ datos.tipoHorario ? "Común" : "Bloqueo" }} 
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+}

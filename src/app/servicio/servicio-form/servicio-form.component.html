@@ -1,0 +1,124 @@
+<form
+  class="form"
+  [formGroup]="servicioForm"
+  (ngSubmit)="submitServicio()"
+  novalidate
+>
+  <input type="hidden" formControlName="id" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <h1>{{ titleForm }} Servicio</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row" style="margin-top: 1rem">
+        <div class="col">
+          <label class="input-label" for="descripcion"
+            >Descripción del Servicio</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="descripcion"
+              placeholder="Descripción"
+            />
+            <mat-error *ngIf="errorHandling('descripcion')">
+              {{ errorHandling("descripcion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="precio">Precio del Servicio</label>
+          <mat-form-field class="full-width">
+            <input
+              id="precio"
+              matInput
+              formControlName="precio"
+              placeholder="Precio"
+              (input)="formatoConComas($event)"
+              (keydown)="onKeyDown($event)"
+            />
+            <mat-error *ngIf="errorHandling('precio')">
+              {{ errorHandling("precio") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="duracion"
+            >Tiempo total del Servicio</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              id="duracion"
+              matInput
+              formControlName="duracion"
+              placeholder="Duración"
+            />
+            <mat-error *ngIf="errorHandling('duracion')">
+              {{ errorHandling("duracion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="beneficio"
+            >Beneficios del Servicio</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="beneficio"
+              placeholder="Beneficio"
+            />
+            <mat-error *ngIf="errorHandling('beneficio')">
+              {{ errorHandling("beneficio") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="col">
+        <label class="input-label" for="requerimiento"
+          >Requerimientos Previos</label
+        >
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="requerimiento"
+            placeholder="Requerimiento"
+          />
+          <mat-error *ngIf="errorHandling('requerimiento')">
+            {{ errorHandling("requerimiento") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-header>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Regresar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          <mat-icon>delete</mat-icon>
+          Limpiar
+        </button>
+        <button mat-raised-button class="green-button" type="submit">
+          <mat-icon>check</mat-icon>
+          Confirmar
+        </button>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</form>

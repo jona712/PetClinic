@@ -1,0 +1,74 @@
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 0 10px;
+}
+
+.dashboard-card-content {
+  height: calc(100% - 1em);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 400px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mid-width {
+  width: 50%;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graph {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
+  padding: 5px;
+  height: 590px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mid-width {
+  width: 50%;
+}
+
+.contenedor-25 {
+  width: 25vw; /* 25% del ancho de la pantalla */
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}

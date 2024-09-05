@@ -1,0 +1,155 @@
+<form
+  class="form"
+  [formGroup]="horarioForm"
+  (ngSubmit)="submitHorario()"
+  novalidate
+>
+  <input type="hidden" formControlName="id" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <h1>{{ titleForm }} Horario</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row" style="margin-top: 1rem">
+        <div class="full-width" *ngIf="sucursalList">
+          <label class="input-label" for="sucursal">Sucursales</label>
+          <mat-form-field class="full-width">
+            <mat-select
+              placeholder="Sucursal"
+              formControlName="sucursal"
+              multiple
+            >
+              @for (item of sucursalList; track item.id) {
+              <mat-option [value]="item.id">
+                {{ item.nombre }}
+              </mat-option>
+              }
+            </mat-select>
+            @if(errorHandling('sucursal')){
+            <mat-error>
+              {{ errorHandling("sucursal") }}
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col" *ngIf="diasList">
+          <label class="input-label" for="dias">Dias de la Semana</label>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Dias" formControlName="dias" multiple>
+              @for (item of diasList; track item.id) {
+              <mat-option [value]="item.value">
+                {{ item.value }}
+              </mat-option>
+              }
+            </mat-select>
+
+            @if(errorHandling('dias')){
+            <mat-error>
+              {{ errorHandling("dias") }}
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+
+          <label class="input-label" for="fecha">Fecha</label>
+          <mat-form-field class="full-width">          
+            <mat-label>Seleccione un rango de fechas</mat-label>
+            <mat-date-range-input [rangePicker]="picker" [min]="minDate" formGroupName="fecha" >
+              <input matStartDate formControlName="start" placeholder="Fecha Inicio" readonly>
+              <input matEndDate formControlName="end" placeholder="Fecha Fin" readonly>
+            </mat-date-range-input>
+            <!-- <input matInput [min]="minDate"  [matDatepicker]="picker" formControlName="fecha" readonly/> -->
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>          
+            <mat-date-range-picker #picker></mat-date-range-picker>
+                         
+            <mat-error *ngIf="errorHandling('fecha.start')">
+              {{ errorHandling("fecha.start") }}
+            </mat-error>
+           
+            <mat-error *ngIf="!errorHandling('fecha.start') && errorHandling('fecha.end')">
+              {{ errorHandling('fecha.end') }}
+            </mat-error>     
+
+          </mat-form-field>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="horaInicio">Hora de Inicio</label>
+          <mat-form-field class="full-width">
+            <input
+              id="horaInicio"
+              matInput
+              formControlName="horaInicio"
+              placeholder="Hora de Inicio"
+            />
+            <mat-error *ngIf="errorHandling('horaInicio')">
+              {{ errorHandling("horaInicio") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="horaFin">Hora Final</label>
+          <mat-form-field class="full-width">
+            <input
+              id="horaFin"
+              matInput
+              formControlName="horaFin"
+              placeholder="Hora Final"
+            />
+            <mat-error *ngIf="errorHandling('horaFin')">
+              {{ errorHandling("horaFin") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" style="padding-bottom: 1rem">
+        <div class="col">
+          <label class="input-label" for="scheduleType">Tipo de Horario</label>
+          <mat-slide-toggle
+            id="scheduleType"
+            [checked]="isBlockSchedule"
+            (change)="onScheduleTypeChange($event)"
+          >
+            {{ isBlockSchedule ? "Común" : "Bloqueo" }}
+          </mat-slide-toggle>
+        </div>
+
+        <div class="col full-width"></div>
+      </div>
+    </mat-card-content>
+    <mat-card-header>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Regresar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          <mat-icon>delete</mat-icon>
+          Limpiar
+        </button>
+        <button mat-raised-button class="green-button" type="submit">
+          <mat-icon>check</mat-icon>
+          Confirmar
+        </button>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</form>

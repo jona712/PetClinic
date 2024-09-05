@@ -1,0 +1,181 @@
+<form
+  class="form"
+  [formGroup]="productoForm"
+  (ngSubmit)="submitProducto()"
+  novalidate
+>
+  <input type="hidden" formControlName="id" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <h1>{{ titleForm }} Producto</h1>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="nombre">Nombre del producto</label>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="nombre" placeholder="Nombre" />
+            <mat-error *ngIf="errorHandling('nombre')">
+              {{ errorHandling("nombre") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="nombre"
+            >Descripción del producto</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="descripcion"
+              placeholder="Descripción"
+            />
+            <mat-error *ngIf="errorHandling('descripcion')">
+              {{ errorHandling("descripcion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="nombre">Precio del producto</label>
+          <mat-form-field class="full-width">
+            <input
+              id="precio"
+              matInput
+              formControlName="precio_producto"
+              placeholder="Precio"
+              (input)="formatoConComas($event)"
+              (keydown)="onKeyDown($event)"
+            />
+            <mat-error *ngIf="errorHandling('precio_producto')">
+              {{ errorHandling("precio_producto") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="ingrediente"
+            >Ingredientes del producto</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="ingrediente"
+              placeholder="Ingredientes"
+            />
+            <mat-error *ngIf="errorHandling('ingrediente')">
+              {{ errorHandling("ingrediente") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="nombre"
+            >Especificaciones del producto</label
+          >
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              formControlName="especificacion"
+              placeholder="Especificaciones"
+            />
+            <mat-error *ngIf="errorHandling('especificacion')">
+              {{ errorHandling("especificacion") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="nombre">Categoría del producto</label>
+          <mat-form-field class="full-width">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="categoriaId">
+              <mat-option
+                *ngFor="let categoria of categoriasList"
+                [value]="categoria.id"
+              >
+                {{ categoria.descripcion }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorHandling('categoriaId')">
+              {{ errorHandling("categoriaId") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        @if (isCreate) {
+        <div class="image-container">
+          <div class="image">
+            <img id="image-preview" />
+          </div>
+          <div class="input-select">
+            <label id="selectFile" for="file-upload" class="file-upload-label"
+              >Seleccionar archivo</label
+            >
+            <input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              (change)="selectFile($event)"
+              class="file-upload"
+            />
+          </div>
+        </div>
+        }@else{
+        <div class="image-container">
+          <div class="image">
+            <img
+              id="image-preview"
+              mat-card-image
+              [src]="'http://localhost:3000/images/' + nameImage"
+              alt="Imagen Producto"
+            />
+          </div>
+          <div class="input-select">
+            <label id="selectFile" for="file-upload" class="file-upload-label"
+              >Seleccionar archivo</label
+            >
+            <input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              (change)="selectFile($event)"
+              class="file-upload"
+            />
+          </div>
+        </div>
+        }
+      </div>
+    </mat-card-content>
+    <mat-card-header>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Regresar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          <mat-icon>delete</mat-icon>
+          Limpiar
+        </button>
+        <button mat-raised-button class="green-button" type="submit">
+          <mat-icon>check</mat-icon>
+          Confirmar
+        </button>
+      </div>
+    </mat-card-header>
+  </mat-card>
+</form>

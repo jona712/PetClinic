@@ -1,0 +1,178 @@
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 0 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mid-width {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.date {
+  font-size: 2.5rem;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #058a78; /* Color azul para los íconos */
+  transition: color 0.3s;
+}
+
+.nav-button:hover {
+  color: #000000; /* Color azul oscuro al pasar el cursor */
+}
+
+.mat-icon {
+  padding: 36px 40px;
+  font-size: 5rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day-header {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 20px;
+  background-color: #058a78; /* Azul intenso para los encabezados */
+  color: #fff; /* Texto blanco en los encabezados */
+}
+
+.calendar-day {
+  /* width: 210px; */
+  position: relative;
+  padding: 10px;
+  height: 120px;
+  background-color: #fff; /* Blanco para todos los días */
+  border: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+/* Días del mes actual */
+.calendar-day.current-month {
+  background-color: #f0f0f0; /* Blanco para los días del mes actual */
+}
+
+/* Días de otros meses */
+.calendar-day.other-month {
+  background-color: lightgrey; /* Gris claro para los días de otros meses */
+}
+
+/* Días del mes actual */
+.calendar-day:hover {
+  background-color: #e3f2fd; /* Azul claro al pasar el cursor */
+}
+
+.event-details {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  justify-content: space-between; /* Para que el botón esté a la derecha */
+  background-color: #058a78; /* Fondo gris claro para el evento */
+  border-radius: 4px;
+  border-left: 4px solid #42a5f5; /* Línea izquierda de color para el evento */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera para darle profundidad */
+}
+
+.event-time {
+  margin-left: 5px;
+  font-weight: bold;
+  color: #fff; /* Color gris oscuro para la hora */
+}
+
+.event-divider {
+  color: #fff;
+}
+
+.event-reason {
+  flex-grow: 1;
+  color: #fff; /* Color gris medio para la razón */
+}
+
+.event-action {
+  margin-left: 5px;
+  background-color: #000000; /* Azul para el botón */
+  color: #fff; /* Texto blanco */
+}
+
+.event-action mat-icon {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Botón en la esquina inferior derecha */
+.calendar-day .event-visibility {
+  position: absolute; /* Posicionar absolutamente dentro del contenedor del día */
+  bottom: 10px; /* Espaciado desde el borde inferior */
+}
+
+.event-visibility {
+  margin-left: 5px;
+  background-color: #000000; /* Azul para el botón */
+  color: #fff; /* Texto blanco */
+}
+
+.event-visibility mat-icon {
+  display: flex;
+  justify-content: end;
+  font-size: 25px;
+  display: flex;
+  position: absolute;
+  float: right;
+}
+
+/* Resaltar el día actual */
+.calendar-day.today {
+  background-color: #058a78; /* Color de fondo del día actual */
+  color: #fff; /* Color del texto para el día actual */
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 4px; /* Bordes redondeados similares a mat-card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra similar a mat-card */
+  padding: 10px; /* Espaciado interno similar a mat-card */
+  position: relative; /* Para manejar la posición de los elementos hijos si es necesario */
+}
+
+/* Resaltar días bloqueados */
+.calendar-day.blocked-day {
+  background-color: firebrick; /* Color de fondo para días bloqueados */
+  color: #fff; /* Color del texto para mayor contraste */
+}
+
+/* Asegurarse de que los días bloqueados se destaquen incluso si son el día actual */
+.calendar-day.today.blocked-day {
+  background-color: firebrick; /* Si el día es hoy y está bloqueado, usar el color de fondo de bloqueado */
+  color: #fff; /* Mantener el color del texto para mayor contraste */
+}

@@ -1,0 +1,290 @@
+.header-create th {
+  background-color: #058a78;
+  color: #fff;
+  font-size: 17px;
+}
+
+.header-update th {
+  background-color: black; /* Ejemplo de otro color */
+  color: #fff;
+  font-size: 17px;
+}
+
+.form {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mid-width {
+  width: 50%;
+}
+
+.custom-width {
+  width: 86%;
+}
+
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
+  padding: 5px;
+  height: auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.header {
+  background-color: #058a78;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 700;
+}
+
+.header-proforma {
+  background-color: black;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 700;
+}
+
+.sucursal {
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.example-button-row {
+  display: table-cell;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+
+.subtitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.subtitle h2 {
+  margin: 0; /* Elimina el margen por defecto del h2 */
+}
+
+.date {
+  font-size: 1rem; /* Ajusta el tamaño de la fuente según sea necesario */
+  color: rgba(0, 0, 0, 0.6); /* Ajusta el color según sea necesario */
+}
+
+.input-label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.green-button {
+  background-color: green !important;
+  color: white !important; /* Color del texto */
+}
+
+.cant {
+  border-radius: 10px;
+  border: 1px solid #ffb84d;
+  font-weight: 500;
+  width: 50px;
+  height: 100%;
+  padding: 10px;
+}
+
+.btn-addshopping {
+  margin-left: 20px;
+  padding: 28px 25px;
+  background-color: #ffb84d;
+}
+
+.icon-addshopping {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+}
+
+.delete-button {
+  background-color: red; /* Fondo rojo */
+  color: white; /* Color del icono blanco */
+  border-radius: 20%; /* Hace el botón circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none; /* Sin borde adicional */
+  padding: 1px 1px;
+  margin: 0;
+}
+
+.delete-button mat-icon {
+  font-size: 23px;
+  width: 25px;
+  height: 25px;
+  margin: 0;
+}
+
+.total-heading {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #058a78;
+}
+
+.total-amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.total-summary {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.info-client {
+  border: 2px solid #058a78;
+  padding: 1px 20px;
+  border-radius: 4px;
+}
+
+/* Absolute Center Spinner  28-01-2024
+   https://codepen.io/charlyarg/pen/GByKja
+*/
+/* Contenedor del Spinner */
+.loading {
+  position: fixed; /* Posición fija para estar en el centro de la pantalla */
+  z-index: 999; /* Asegúrate de que esté por encima de otros elementos */
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto; /* Centra el contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Superposición Transparente */
+.loading:before {
+  content: "";
+  display: block;
+  position: fixed; /* Superposición fija */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Fondo semitransparente */
+}
+
+/* Spinner con Imagen */
+.loading:not(:required):after {
+  content: "";
+  display: block;
+  width: 150px; /* Ancho del spinner */
+  height: 150px; /* Alto del spinner */
+  border-radius: 50%; /* Hacerlo circular */
+  background: url("/assets/images/logo.png") no-repeat center center; /* Imagen centrada */
+  background-size: cover; /* Ajusta la imagen al tamaño del spinner */
+  border-bottom-color: transparent; /* Color del borde inferior transparente para crear el efecto de rotación */
+  -webkit-animation: spinner 1s linear infinite; /* Animación para navegadores WebKit */
+  animation: spinner 1s linear infinite; /* Animación para otros navegadores */
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

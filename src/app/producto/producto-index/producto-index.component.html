@@ -1,0 +1,82 @@
+<div class="container">
+  <mat-card class="form-container">
+    <mat-card-header><h1>Buscar Productos</h1></mat-card-header>
+    <mat-card-content class="input-container">
+      <mat-form-field class="name-product">
+        <mat-label>Nombre Producto</mat-label>
+        <input
+          matInput
+          #nProducto
+          [(ngModel)]="filtro"
+          (ngModelChange)="buscarProductos()"
+        />
+        <button mat-icon-button matSuffix color="primary">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field class="name-category">
+        <mat-label>Nombre Categoria</mat-label>
+        <mat-select
+          multiple
+          [(ngModel)]="categoria"
+          (ngModelChange)="buscarProductos()"
+        >
+          <mat-option
+            *ngFor="let item of lcategoria; trackBy: trackById"
+            [value]="item.id"
+          >
+            {{ item.descripcion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-grid-list [cols]="4" rowHeight="1:1.3" gutterSize="15px">
+    @for (item of filterDatos; track item.id) {
+    <mat-grid-tile>
+      <mat-card class="product-card">
+        <mat-card-header>
+          <div class="image-container">
+            <img
+              class="image-product"
+              mat-card-image
+              [src]="'http://localhost:3000/images/' + item.imagen"
+              [alt]="item.nombre"
+            />
+          </div>
+        </mat-card-header>
+        <mat-card-content class="product-card-content">
+          <h2 class="product-name">{{ item.nombre }}</h2>
+          <p class="product-description">{{ item.descripcion }}</p>
+          <div class="product-footer">
+            <h2 class="product-price">{{ item.precio | currency : "₡" }}</h2>
+            <div class="options">
+              <button
+                mat-mini-fab
+                color="primary"
+                matTooltip="Agregar al carrito"
+                aria-label="Agregar al carrito"
+                (click)="addProducto(item.id, item.estado)"
+              >
+                <mat-icon>add_shopping_cart</mat-icon>
+              </button>
+
+              <button
+                mat-mini-fab
+                color="accent"
+                matTooltip="Ver detalles"
+                aria-label="Ver detalles"
+                (click)="detalleProducto(item.id)"
+              >
+                <mat-icon class="mat-18">visibility</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    }
+  </mat-grid-list>
+</div>

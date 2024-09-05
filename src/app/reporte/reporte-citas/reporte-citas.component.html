@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-header class="center">
+        <mat-card-title>Citas</mat-card-title>
+        <mat-card-subtitle class="subtitle">
+          <p>{{ dataSucursal.nombre }}</p>
+          <span class="date">Fecha: {{ date | date: 'dd/MM/yyyy' }}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      
+  <mat-card-content>
+    <div class="center">
+      <!-- Gráfico de Servicios Más Vendidos -->
+
+      <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="data"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [roundEdges]="true"
+      >
+      </ngx-charts-bar-vertical>
+    </div>
+  </mat-card-content>
+</mat-card>

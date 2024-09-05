@@ -1,0 +1,25 @@
+.table-container {
+  margin: 20px;
+}
+
+
+.mat-elevation-z8 {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.estado-reserva {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+table th {
+  background-color: #058a78;
+  color: #fff;
+  font-size: 17px;
+  width: 100%;
+}
+
+table td {
+  padding: 10px 15px;
+}

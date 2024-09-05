@@ -1,0 +1,68 @@
+.form {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
+  padding: 5px;
+  height: 520px;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+  display: flex;
+  gap: 10px;
+}
+.table {
+  margin: 1em;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.table th {
+  background-color: #4a148c;
+}
+.table td,
+th {
+  border: 1px solid white;
+  border-collapse: collapse;
+  padding: 0.5em;
+}
+
+.input-label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block; /* Asegura que se muestre como bloque y ocupe toda la anchura */
+}
+
+/* styles.css o styles.scss */
+.green-button {
+  background-color: green !important;
+  color: white !important; /* Color del texto */
+}

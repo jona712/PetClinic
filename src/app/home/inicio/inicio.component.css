@@ -1,0 +1,33 @@
+.center-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade una sombra suave */
+    padding: 10px;
+  }
+  
+  .center-card mat-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Asegura que todo el contenido esté centrado */
+    width: 100%;
+    text-align: center; /* Asegura que el texto esté centrado */
+  }
+  
+  .center-card mat-card-title,
+  .center-card mat-card-subtitle {
+    width: 100%;
+  }
+  
+  .card-content {
+    padding: 0 10%; /* Aplica padding del 10% a los lados y 0 arriba/abajo */
+  }
+  
+  .center-card img {
+    margin: auto;
+  }
+  

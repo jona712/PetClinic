@@ -1,0 +1,47 @@
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 0 10px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+}
+
+.info { 
+  width: 50%;
+}
+ 
+.select-sucursal {
+  width: 50%;
+}
+
+table th {
+  background-color: #058a78; /*Color anterior: deepskyblue*/
+  color: #fff;
+  font-size: 17px;
+}
+
+table td {
+  padding: 10px 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+.action {
+  margin: 0 2px;
+}
+
+.activo {
+  font-weight: bold;
+  color: green;
+}
+
+.bloqueo {
+  font-weight: bold;
+  color: red;
+}

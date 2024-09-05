@@ -1,0 +1,95 @@
+<mat-card class="container">
+  <mat-card-header class="row full-width">
+    <div class="col">
+      <div *ngIf="isAdmin">
+        <h1>Selección de Sucursal</h1>
+        <mat-form-field class="mid-width">
+          <mat-select
+            placeholder="Sucursal"
+            [(value)]="selectedSucursal"
+            (selectionChange)="onSucursalChange($event.value)"
+          >
+            <mat-option *ngFor="let item of sucursalList" [value]="item.id">
+              {{ item.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-header>
+    <div class="row full-width">
+      <div class="col mid-width">
+        <button (click)="prevMonth()" class="nav-button">
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+      </div>
+
+      <div class="col mid-width">
+        <h1 class="date">{{ monthName }} {{ viewDate | date : "yyyy" }}</h1>
+      </div>
+      <div class="col mid-width">
+        <button (click)="nextMonth()" class="nav-button">
+          <mat-icon>chevron_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-header>
+  <mat-card-content class="calendar-grid">
+    <div class="calendar-day-header" *ngFor="let day of daysOfWeek">
+      {{ day }}
+    </div>
+    <div
+      class="calendar-day"
+      *ngFor="let day of calendarDays"
+      [ngClass]="{
+        today: isToday(day.date) && !day.isBlocked,
+        'blocked-day': day.isBlocked,
+        'current-month': day.currentMonth,
+        'other-month': !day.currentMonth
+      }"
+      [ngStyle]="{
+        border:
+          day.events.length > 0
+            ? '3px solid ' + day.events[0].estadoColor
+            : 'inherit',
+            
+      }"
+      (click)="dayClicked(day)"
+      [matTooltip]="getTooltipText(day)"
+    >
+      {{ day.date.getDate() }}
+      <div
+        class="event-container"
+        *ngFor="let event of day.events; let i = index"
+      >
+        <div *ngIf="i === 0 && event.hora && event.razon" class="event-details">
+          <span class="event-time">{{ day.events[0].hora }}</span>
+          <span class="event-divider"> - </span>
+          <span class="event-reason">{{ day.events[0].razon }}</span>
+          <button
+            mat-mini-fab
+            class="event-action"
+            matTooltip="Detalles Reserva"
+            aria-label="Detalles Reserva"
+            color="primary"
+            (click)="detalleReserva(day.events[0].id)"
+          >
+            <mat-icon class="mat-18">info</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button
+        *ngIf="day.events.length > 1"
+        mat-mini-fab
+        class="event-visibility"
+        matTooltip="Lista de reservas para el día"
+        aria-label="Lista de reservas para el día"
+        color="primary"
+        (click)="showReservations(day.date)"
+      >
+        <mat-icon class="mat-18">visibility</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

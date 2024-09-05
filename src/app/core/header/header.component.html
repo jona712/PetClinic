@@ -1,0 +1,115 @@
+<mat-toolbar color="primary" class="nabvar">
+  
+ 
+  <div class="row full-width">
+  <div class="col mid-width">
+    <button mat-icon-button class="example-header-image" matTooltip="PetClinic" [routerLink]="['/inicio']" routerLinkActive="link-active"></button>
+  <div class="desktop-menu">
+    <a mat-button [routerLink]="['/inicio']" routerLinkActive="link-active"><h1>Inicio</h1></a>
+    <button mat-button [matMenuTriggerFor]="servicesMenuDesktop"><h2>Catálogo</h2></button>
+    <div *ngIf="isAuthenticated">
+      <button mat-button [matMenuTriggerFor]="processMenuDesktop" *ngIf="currentUser?.rol === 'Encargado' || currentUser?.rol === 'Administrador' || currentUser?.rol === 'Cliente'"><h2>Procesos</h2></button>
+      <button mat-button [matMenuTriggerFor]="maintenanceMenuDesktop" *ngIf="this.currentUser?.rol === 'Administrador' || this.currentUser?.rol === 'Encargado'"><h2>Mantenimientos</h2></button>
+      <button mat-button [matMenuTriggerFor]="reportsMenuDesktop" *ngIf="this.currentUser?.rol === 'Administrador' || this.currentUser?.rol === 'Encargado'"><h2>Reportes</h2></button>
+      <a mat-button [routerLink]="['horario-calender']" routerLinkActive="link-active" *ngIf="this.currentUser?.rol === 'Administrador' || this.currentUser?.rol === 'Encargado'"><h1>Agenda</h1></a>
+    </div>   
+  </div>
+</div>
+
+<div class="col mid-width">
+  <button class="shopping_cart" mat-icon-button matBadgeColor="accent" [matBadge]="qtyItems.toString()" [routerLinkActive]="'link-active'"  [routerLink]="['factura/carrito']">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>  
+
+  <mat-menu #servicesMenuDesktop="matMenu">
+    <button mat-menu-item [routerLink]="['/producto']" routerLinkActive="link-active">Productos</button>
+  </mat-menu>
+</div>
+
+<div class="col mid-width">
+  <span
+    class="mat-caption"
+    [ngClass]="{ role: isAuthenticated && currentUser?.rol !== 'Cliente' }"
+    *ngIf="isAuthenticated"
+  >
+    {{ currentUser?.rol === 'Administrador' ? 'Administrador' : currentUser?.nombreSucursal }}
+  </span>
+  <span
+    class="mat-caption"
+    [ngClass]="{ role: isAuthenticated && currentUser?.rol === 'Cliente' }"
+    *ngIf="isAuthenticated"
+  >
+    {{ currentUser?.correo }}
+  </span>
+
+  <button mat-icon-button [matMenuTriggerFor]="userMenu">
+    <mat-icon [ngStyle]="{ color: isAuthenticated ? '#62E1CA' : '#7E9BEF' }">person</mat-icon>
+  </button>
+</div>
+
+
+</div>
+
+  <mat-menu #processMenuDesktop="matMenu">    
+     @if (this.currentUser?.rol==='Encargado' || this.currentUser?.rol==='Administrador' ||  this.currentUser?.rol==='Cliente' ) {   
+      <button mat-menu-item [routerLink]="['/reserva-table']" routerLinkActive="link-active" [queryParams]="{ context: 'processes' }">Reservar</button>
+      <button mat-menu-item [routerLink]="['/factura/create']" routerLinkActive="link-active" [queryParams]="{ context: 'processes' }">Facturar</button>
+      } 
+  </mat-menu>
+
+  <mat-menu #maintenanceMenuDesktop="matMenu">
+
+    @if (this.currentUser?.rol === 'Administrador') {
+      <button mat-menu-item [routerLink]="['/servicio-table']" routerLinkActive="link-active">Servicio</button>
+      <button mat-menu-item [routerLink]="['/producto-table']" routerLinkActive="link-active">Producto</button>
+    }
+    @if (this.currentUser?.rol==='Administrador') {
+      <button mat-menu-item [routerLink]="['/sucursal-table']" routerLinkActive="link-active">Surcusal</button> 
+    }
+
+    @if (this.currentUser?.rol === 'Administrador' || this.currentUser?.rol === 'Encargado') {
+      <button mat-menu-item [routerLink]="['/horario-table']" routerLinkActive="link-active">Horario</button>
+    }
+    
+    
+  </mat-menu>
+
+  <mat-menu #reportsMenuDesktop="matMenu">
+
+    @if (this.currentUser?.rol === 'Administrador' || this.currentUser?.rol === 'Encargado'){
+      <button mat-menu-item [routerLink]="['/factura-table']" routerLinkActive="link-active">Facturas</button>      
+      <button mat-menu-item [routerLink]="['/reserva-table']" routerLinkActive="link-active" [queryParams]="{ context: 'report' }">Reservas</button>
+    }
+
+    @if (this.currentUser?.rol==='Administrador') {
+      <button mat-menu-item [routerLink]="['/MasVendidos']" routerLinkActive="link-active">Más vendidos</button>
+    }    
+    @if (this.currentUser?.rol==='Encargado') {
+      <button mat-menu-item [routerLink]="['/reporteCitas']" routerLinkActive="link-active">Citas</button>      
+    }
+
+  </mat-menu>
+  
+  <div class="example-spacer"></div>
+
+  <mat-menu #userMenu="matMenu">
+    <ng-container *ngIf="isAuthenticated && currentUser?.rol === 'Cliente'">
+      <button mat-menu-item [routerLink]="['/factura-table']" routerLinkActive="link-active">
+        <mat-icon>history</mat-icon>
+        <span>Historial</span>
+      </button>  
+    </ng-container>    
+    <ng-container *ngIf="!isAuthenticated">
+      <button mat-menu-item (click)="login()">
+        <mat-icon>person_add</mat-icon>
+        <span>Login</span>
+      </button>
+    </ng-container>
+    <ng-container *ngIf="isAuthenticated">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>person_remove</mat-icon>
+        <span>Logout</span>
+      </button>
+    </ng-container>
+  </mat-menu>
+</mat-toolbar>

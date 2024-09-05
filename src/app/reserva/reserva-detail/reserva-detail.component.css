@@ -1,0 +1,61 @@
+.reserva-container {
+  font-family: "Arial", sans-serif;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.reserva-header {
+  background-color: #058a78; /*Color anterior: deepskyblue*/
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.reserva-header h1,
+.reserva-header h2 {
+  margin: 5px;
+}
+
+.section-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.cliente-info,
+.sucursal-info {
+  width: 50%;
+}
+
+/* Añade más estilos según tus preferencias */
+.home-card {
+  margin: 10px auto;
+  border-radius: 4px;
+  max-width: 55%;
+  padding: 0.5em;
+  line-height: 1.5em;
+}
+
+.total {
+  display: flex;
+  justify-content: end;
+}
+
+.estado-reserva {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.estado-circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 8px; /*0 Margen arriba/abajo, 8px de margen izquierda/derecha */
+}
+
+.estado-text {
+  font-weight: bold;
+  font-size: 18px;
+}

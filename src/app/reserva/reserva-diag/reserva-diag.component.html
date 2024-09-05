@@ -1,0 +1,95 @@
+@if(datos){
+    <mat-card class="home-card">
+      <div class="reserva-container">
+        <header class="reserva-header">
+          <h1>No. Reserva #{{ datos.id }}</h1>
+          <hr>
+          <h2>Fecha: {{datos.fecha }}</h2>
+          <h2>Duración: {{ datos.hora }} - {{datos.horaFin}}</h2>
+        </header>
+
+        <div style="text-align: center; margin-top: 10px;">
+          <h3 style="font-weight: bold; margin: 0px;">Descripción:</h3>
+          <p style="margin: 0;">{{ datos.descripcion }}</p>
+        </div>
+        
+        <section class="section-info">          
+          <div class="cliente-info">
+            <h3>Cliente:</h3>
+            <p>
+              <strong>Identificación:</strong>
+              {{ datos.usuario.id }}
+            </p>
+            <p>
+              <strong>Nombre:</strong>
+              {{ datos.usuario.nombre }}
+            </p>
+            <p>
+              <strong>Teléfono:</strong>
+              {{ datos.usuario.telefono }}
+            </p>
+            <p>
+              <strong>Correo:</strong>
+              {{ datos.usuario.correo }}
+            </p>
+          </div>
+          <div class="sucursal-info">
+            <h3>Sucursal:</h3>
+            <p>
+              <strong>Nombre:</strong>
+              {{ datos.sucursal.nombre }}
+            </p>
+            <p>
+              <strong>Teléfono:</strong>
+              {{ datos.sucursal.telefono }}
+            </p>
+            <p>
+              <strong>Dirección:</strong>
+              {{ datos.sucursal.direccion }}
+            </p>
+            <p>
+              <strong>Correo:</strong>
+              {{ datos.sucursal.correo }}
+            </p>
+          </div>
+        </section>
+      </div>
+    
+      <mat-card-content class="home-card-content">
+        <div class="estado-reserva">
+          <span class="estado-text"> Estado de reserva:</span>
+          <span
+            class="estado-circle"
+            [style.background-color]="datos.Estado.color"
+            matTooltip="{{ datos.Estado.descripcion }}"
+          ></span>
+        </div>
+        <h2>Detalles</h2>
+        <table mat-table [dataSource]="dataSource" class="table">
+          <ng-container matColumnDef="Servicio">
+            <th mat-header-cell *matHeaderCellDef>Servicio</th>
+            <td mat-cell *matCellDef="let info">{{ info.servicio.descripcion }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Habitos">
+            <th mat-header-cell *matHeaderCellDef>Hábitos</th>
+            <td mat-cell *matCellDef="let info">{{ info.habitos }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Historial">
+            <th mat-header-cell *matHeaderCellDef>Historial</th>
+            <td mat-cell *matCellDef="let info">{{ info.historial }}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="Razon">
+            <th mat-header-cell *matHeaderCellDef>Razón</th>
+            <td mat-cell *matCellDef="let info">{{ info.razon }}</td>
+          </ng-container>
+    
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    }
+    

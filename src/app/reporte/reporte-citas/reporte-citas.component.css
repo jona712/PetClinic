@@ -1,0 +1,63 @@
+.dashboard-card-content {
+    width: 100%;
+    height: calc(100% - 1em);
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 400px;
+  }
+  
+  .center {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  
+  .subtitle {
+    display: flex;    
+    flex-flow: column;
+    width: 100%;    
+  }
+  
+
+.subtitle p, 
+.subtitle .date {
+  margin: 0; /* Elimina los márgenes predeterminados */
+}
+  
+  
+  .shipping-card {
+    min-width: 120px;
+    margin: 20px auto;
+    padding: 5px;
+    height: 590px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mid-width {
+    width: 50%;
+  }
+  
+  .contenedor-25 {
+      width: 25vw; /* 25% del ancho de la pantalla */
+    }
+    
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  

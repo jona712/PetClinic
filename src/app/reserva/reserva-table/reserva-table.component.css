@@ -1,0 +1,70 @@
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 0 10px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.mid-width {
+  width: 50%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.almost-full-width {
+  width: 90%;
+}
+
+.actions {
+  justify-content: end;
+}
+
+.estado-reserva {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.action {
+  margin: 0 2px;
+}
+
+table th {
+  position: absolute;
+  background-color: #058a78;
+  color: #fff;
+  font-size: 17px;
+}
+
+table td {
+  padding: 10px 15px;
+}

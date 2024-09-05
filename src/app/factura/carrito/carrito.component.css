@@ -1,0 +1,48 @@
+mat-header-cell {
+  font-size: 17px;
+}
+
+.footer-row {
+  font-weight: bold;
+}
+
+.box {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 2em 2em;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+.header {
+  padding: 10px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mid-width {
+  width: 50%;
+}
+
+.footer-total {
+  font-size: 1.2em;
+  font-weight: bolder;
+}

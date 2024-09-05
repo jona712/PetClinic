@@ -1,0 +1,176 @@
+table th {
+  background-color: #058a78;
+  color: #fff;
+  font-size: 17px;
+}
+
+.card-options {
+  position: absolute;
+  margin-left: 100px;
+  padding: 10px;
+  width: 300px;
+  background-color: #ccc;
+}
+
+.factura-container {
+  font-family: "Arial", sans-serif;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.factura-header {
+  background-color: #058a78; /*Color anterior: deepskyblue*/
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.factura-header h1,
+.factura-header h2 {
+  margin: 5px;
+}
+
+.section-info {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.cliente-info,
+.sucursal-info {
+  width: 50%;
+}
+
+.input-label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block;
+}
+/* Añade más estilos según tus preferencias */
+
+.home-card {
+  margin: 10px auto;
+  border-radius: 4px;
+  max-width: 55%;
+  padding: 0.5em;
+  line-height: 1.5em;
+  z-index: 0;
+}
+
+.total {
+  display: flex;
+  justify-content: end;
+}
+
+/* factura-detail.component.css */
+.home-card-content {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+}
+
+.total {
+  text-align: right;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.table-container {
+  min-height: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s ease, min-height 0.3s ease;
+}
+
+.table-container.expanded {
+  min-height: 100px;
+  max-height: 500px;
+}
+
+button {
+  margin: 10px 0;
+  display: block;
+}
+
+.checkbox-button {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: transparent; /* El texto no es visible por defecto */
+  border-radius: 3px;
+}
+
+.checkbox-button.checked {
+  background-color: #007bff; /* Cambia el color de fondo cuando está seleccionado */
+  color: #fff; /* El texto se vuelve visible cuando está seleccionado */
+}
+
+.checkbox-button:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px #007bff;
+}
+
+.checkbox-button1 {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: transparent; /* El texto no es visible por defecto */
+  border-radius: 3px;
+}
+
+.checkbox-button1.checked {
+  background-color: green; /* Cambia el color de fondo cuando está seleccionado */
+  color: #fff; /* El texto se vuelve visible cuando está seleccionado */
+}
+
+.checkbox-button1:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px green;
+}
+
+/* Estilos para el botón normal */
+.confirm-button {
+  background-color: #007bff; /* Color de fondo primario */
+  color: #fff; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero al pasar sobre el botón */
+  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+/* Estilos para el botón normal */
+.confirm-button1 {
+  background-color: green; /* Color de fondo primario */
+  color: #fff; /* Color del texto */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor de puntero al pasar sobre el botón */
+  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.confirm-button:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el cursor */
+}
+
+.confirm-button:focus {
+  outline: none; /* Sin contorno al recibir foco */
+  box-shadow: 0 0 2px 2px #0056b3; /* Sombra alrededor del botón al recibir foco */
+}

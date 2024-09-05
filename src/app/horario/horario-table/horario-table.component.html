@@ -1,0 +1,109 @@
+<mat-card class="container">
+  <mat-card-header class="header">
+    <div class="info">
+      <h1 class="mat-h1">Horarios</h1>
+      <a
+        mat-mini-fab
+        matTooltip="Crear Horario" 
+        aria-label="Crear Horario"
+        color="primary"
+        (click)="crearHorario()"
+      >
+        <mat-icon>add</mat-icon>
+      </a>
+    </div>
+    <div class="select-sucursal" style="padding-right: 2rem;">
+      <h1>Selección de Sucursal</h1>
+      <mat-form-field class="full-width">
+        <mat-select
+          placeholder="Sucursal"
+          [(value)]="selectedSucursal"
+          [disabled]="!isAdmin"
+          (selectionChange)="onSucursalChange($event.value)"
+        >
+          <mat-option *ngFor="let item of sucursalList" [value]="item.id">
+            {{ item.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <!-- Tabla para mostrar los datos de la sucursal seleccionada -->
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="full-width table"
+        matSort
+        matSortStart="desc"
+        aria-label="Elements"
+      >
+        <!-- Define las columnas de la tabla -->
+        <ng-container matColumnDef="diaSemana">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Día Semana</th>
+          <td mat-cell *matCellDef="let row">{{ row.diaSemana }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="horario">
+          <th mat-header-cell *matHeaderCellDef>Horario</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.horaInicio }} - {{ row.horaFin }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.fecha }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef>Tipo Horario</th>
+          <td
+            mat-cell
+            *matCellDef="let row"
+            [ngClass]="{
+              activo: row.tipoHorario,
+              bloqueo: !row.tipoHorario
+            }"
+          >
+            {{ row.tipoHorario ? "Común" : "Bloqueo" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>Opciones</th>
+          <td mat-cell *matCellDef="let row" class="actions-container">          
+            <button
+              class="action"
+              mat-mini-fab
+              matTooltip="Detalle Horario"
+              aria-label="Detalle Horario"
+              color="primary"
+              (click)="detalleHorario(row.horarioId)"
+            >
+              <mat-icon class="mat-18">info</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Encabezado de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <!-- Filas de la tabla -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        #paginator
+        [length]="dataSource?.data?.length"
+        [pageIndex]="0"
+        [pageSize]="5"
+        [pageSizeOptions]="[3, 5, 10]"
+        aria-label="Seleccione una pagina"
+      >
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+

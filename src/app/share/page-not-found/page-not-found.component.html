@@ -1,0 +1,28 @@
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <div>
+      <h1>404 - Página no encontrada</h1>
+      <img
+        class="img-responsive"
+        src="./assets/images/notfound.jpg"
+        style="width: 300px"
+      />
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+      <h1>Lo sentimos!</h1>
+      <div>
+        <p>
+          La página que está buscando podría haber sido eliminada, cambio su
+          nombre o no está disponible temporalmente
+        </p>
+      </div>
+      <div>
+        <button mat-raised-button color="accent" (click)="irInicio()">
+          Regresar
+        </button>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,65 @@
+<button
+  mat-icon-button
+  class="close-button"
+  [mat-dialog-close]="true"
+  matTooltip="Cerrar"
+>
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+@if(datos){
+<div>
+  <div class="dialog-headline">
+    <strong class="description">{{ datos.descripcion }}</strong>
+    <span>Código: {{datos.id}}</span>
+  </div>
+  <mat-dialog-content class="content-container">
+    <div class="details-container">
+      <div class="info-container">
+        <div>
+          <div class="info">
+            <mat-icon>schedule</mat-icon>
+            <h3>Duración:</h3>
+          </div>
+          {{ datos.duracion }} minutos
+        </div>
+        <div>
+          <div class="info">
+            <mat-icon>local_hospital</mat-icon>
+            <h3>Beneficio:</h3>
+          </div>
+          {{ datos.beneficio }}
+        </div>
+        <div>
+          <div class="info">
+            <mat-icon>description</mat-icon>
+            <h3>Requerimiento:</h3>
+          </div>
+          {{ datos.requerimiento }}
+        </div>
+      </div>
+      <br />
+      <mat-divider></mat-divider>
+      <div>
+        <h2>Precio:</h2>
+        <div class="price">
+          {{ datos.precio | currency : "₡ " }}
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div>
+        <h2>Estado:</h2>
+        <div
+          [ngClass]="{ activo: datos.estado, inactivo: !datos.estado }"
+          class="status"
+        >
+          <mat-icon>{{
+            datos.estado ? "check_circle" : "highlight_off"
+          }}</mat-icon>
+          {{ datos.estado ? "Activo" : "Inactivo" }}
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+}

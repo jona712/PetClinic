@@ -1,0 +1,243 @@
+<form
+  class="form"
+  [formGroup]="reservaForm"
+  (ngSubmit)="submitReserva()"
+  novalidate
+>
+  <input type="hidden" formControlName="id" />
+  <input type="hidden" formControlName="sucursal" value="sucursal?" />
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <h1>{{ titleForm }} Reserva</h1>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-card-subtitle class="subtitle">
+        <h2>Sucursal: {{ sucursal?.nombre }}</h2>
+        <span class="date">Fecha: {{ minDate | date : "dd/MM/yyyy" }}</span>
+      </mat-card-subtitle>
+
+
+      @if(estadoReserva){      
+        <div class="estado-reserva">
+          <span class="estado-text"> Estado de reserva:</span> 
+          <span
+            class="estado-circle"
+            [style.background-color]="estadoReserva.color"
+            matTooltip="{{ estadoReserva.descripcion }}"
+          ></span>
+        </div>
+        }
+                  
+      <div class="row">     
+        <div class="col">
+        <label class="input-label" for="descripcion">Descripción</label>
+          <mat-form-field class="full-width">    
+            <input
+            id="descripcion"
+            matInput 
+            placeholder="Descripción de la reserva"
+            formControlName="descripcion"
+            />          
+            
+            <mat-error *ngIf="errorHandling('descripcion')">
+              {{ errorHandling("descripcion") }}
+            </mat-error>
+
+          </mat-form-field>     
+        </div>         
+      </div>      
+
+      <div class="row">
+        <div class="col">
+        <label class="input-label" for="fecha">Fecha</label>
+        <mat-form-field class="full-width">          
+          <mat-label>Seleccione una fecha</mat-label>
+          <input matInput [min]="minDate"  [matDatepicker]="picker" 
+          [matDatepickerFilter]="dateFilter" formControlName="fecha" (dateInput)="onDateChange($event)" readonly/>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>          
+          <mat-datepicker #picker></mat-datepicker>
+
+          <mat-error *ngIf="errorHandling('fecha')">
+            {{ errorHandling("fecha") }}
+          </mat-error>
+          
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <label class="input-label" for="horaInicio">Hora de Inicio</label>
+        <mat-form-field class="full-width">
+          <input
+            id="horaInicio"
+            matInput
+            formControlName="horaInicio"
+            placeholder="Hora de Inicio"
+          /> 
+          <mat-error *ngIf="errorHandling('horaInicio')">
+            {{ errorHandling("horaInicio") }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="cliente">Clientes</label>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Selecciona un cliente" formControlName="cliente" (selectionChange)="onClienteChange($event.value)">
+              @for (item of listClientes; track item.id) {
+              <mat-option [value]="item.id">
+                {{ item.nombre }}
+              </mat-option>
+              }
+            </mat-select>
+            <mat-error>
+              {{ errorHandling("cliente") }}
+            </mat-error>        
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col">
+          <label class="input-label" for="telefono">Teléfono</label>
+          <mat-form-field class="full-width">
+            <input
+              id="telefono"
+              formControlName="telefono"
+              matInput              
+              placeholder="Número de Teléfono"
+              [value]="selectedCliente?.telefono" 
+              readonly
+            />
+          </mat-form-field>
+        </div>
+        
+        <div class="col">
+          <label class="input-label" for="correo">Correo electrónico</label>
+          <mat-form-field class="full-width">
+            <input
+              id="correo"
+              matInput        
+              formControlName="correo"     
+              placeholder="Correo electrónico"
+              [value]="selectedCliente?.correo" 
+              readonly
+            />
+          </mat-form-field>
+        </div>
+
+        
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="servicio">Servicios</label>
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Selecciona un servicio" formControlName="servicio" (selectionChange)="onServicioChange($event.value)">
+              @for (item of listServicios; track item.id) {
+              <mat-option [value]="item.id">
+                {{ item.descripcion }}
+              </mat-option>
+              }
+            </mat-select>
+
+            <mat-error>
+              {{ errorHandling("servicio") }}
+            </mat-error>
+            
+          </mat-form-field>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="duracion">Duración</label>
+          <mat-form-field class="full-width">
+            <input
+              id="duracion"
+              matInput     
+              formControlName="duracion"        
+              placeholder="Duración del servicio"
+              [value]="formattedDuracion" 
+              readonly
+            />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row" >
+        <div class="col">
+          <label class="input-label" for="habitos">Hábitos</label>
+          <mat-form-field class="full-width">
+            <input
+              id="habitos"
+              formControlName="habitos"
+              matInput             
+              placeholder="Hábitos de la mascota"                            
+            />
+            
+            <mat-error>
+              {{ errorHandling("habitos") }}
+            </mat-error>
+
+          </mat-form-field>         
+        </div>
+        <div class="col">
+          <label class="input-label" for="historial">Historial</label>
+          <mat-form-field class="full-width">
+            <input
+              id="historial"
+              formControlName="historial"
+              matInput             
+              placeholder="Historial de la mascota"                            
+            />
+            
+            <mat-error>
+              {{ errorHandling("historial") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <label class="input-label" for="razon">Razón</label>
+          <mat-form-field class="full-width">
+            <input
+              id="razon"
+              formControlName="razon"
+              matInput             
+              placeholder="Razón de la reserva"                            
+            />
+            
+            <mat-error>
+              {{ errorHandling("razon") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Regresar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          <mat-icon>delete</mat-icon>
+          Limpiar
+        </button>
+        <button mat-raised-button class="green-button" type="submit">
+          <mat-icon>check</mat-icon>
+          Confirmar
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</form>

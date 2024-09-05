@@ -1,0 +1,54 @@
+<button
+  mat-icon-button
+  class="close-button"
+  [mat-dialog-close]="true"
+  matTooltip="Cerrar"
+>
+  <mat-icon class="close-icon" color="warn">close</mat-icon>
+</button>
+@if(datos){
+<div>
+  <div class="dialog-headline">
+    <span class="description">{{ datos.nombre }}</span>
+  </div>
+  <mat-dialog-content class="content-container">
+    <div class="image-container">
+      <img
+        mat-card-image
+        [src]="'http://localhost:3000/images/' + datos.imagen"
+        [alt]="datos.nombre"
+      />
+    </div>
+    <div class="details-container">
+      <div class="info-container">
+        <div>
+          <h3>Descripción:</h3>
+          {{ datos.descripcion }}
+        </div>
+        <div class="info-product">
+          <div class="info">
+            <h3>Especificaciones:</h3>
+            {{ datos.especificacion }}
+          </div>
+
+          <div class="info">
+            <h3>Ingredientes:</h3>
+            {{ datos.ingrediente }}
+          </div>
+        </div>
+
+        <div>
+          <h3>Categoría:</h3>
+          {{ datos.categoria.descripcion }}
+        </div>
+      </div>
+
+      <mat-divider></mat-divider>
+      <div>
+        <h1>Precio:</h1>
+        <div class="price">{{ datos.precio | currency : "₡ " }}</div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+}

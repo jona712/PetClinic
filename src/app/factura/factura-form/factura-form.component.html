@@ -1,0 +1,399 @@
+<form
+  class="form"
+  [formGroup]="facturaForm"
+  (ngSubmit)="submitForm()"
+  novalidate
+>
+  <input type="hidden" formControlName="id" />
+  <input type="hidden" formControlName="sucursal" value="sucursal?" />
+  <mat-card class="shipping-card">
+    <mat-card-header [ngClass]="isCreate ? 'header' : 'header-proforma'">
+      <h1 class="col">{{ isCreate ? "Facturar" : "Actualizar Profomar" }}</h1>
+      <div class="col sucursal">
+        <h1>Sucursal: {{ sucursal?.nombre }}</h1>
+        <h3>Encargado(a): {{ encargado?.nombre }}</h3>
+      </div>
+      <h1 class="col" style="text-align: right">
+        Fecha: {{ minDate | date : "dd/MM/yyyy" }}
+      </h1>
+    </mat-card-header>
+    <br />
+    <mat-card-content>
+      <div class="row">
+        <!-- Mostrar el select de Cliente solo si el rol es 'Administrador' o 'Cliente' -->
+        <div
+          class="col"
+          *ngIf="
+            currentUser.rol === 'Encargado' ||
+            currentUser.rol === 'Administrador'
+          "
+        >
+          <label class="input-label" for="cliente">Cliente</label>
+          <mat-form-field class="full-width">
+            <mat-select
+              placeholder="Selecciona un cliente"
+              formControlName="usuario"
+              (selectionChange)="onClienteChange($event.value)"
+            >
+              <mat-option *ngFor="let item of listClientes" [value]="item.id">
+                {{ item.nombre }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error>
+              {{ errorHandling("usuario") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Mostrar el select de Sucursal solo si el rol es 'Administrador' o 'Cliente' -->
+        <div
+          class="col"
+          *ngIf="
+            currentUser.rol === 'Administrador' || currentUser.rol === 'Cliente'
+          "
+        >
+          <label class="input-label" for="sucursal">Sucursal</label>
+          <mat-form-field class="full-width">
+            <mat-select
+              placeholder="Sucursal"
+              [(value)]="selectedSucursal"
+              formControlName="sucursal"
+              (selectionChange)="onSucursalChange($event.value)"
+            >
+              <mat-option *ngFor="let item of sucursalList" [value]="item.id">
+                {{ item.nombre }}
+              </mat-option>
+            </mat-select>
+
+            <mat-error>
+              {{ errorHandling("sucursal") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Mostrar la información del cliente solo si el rol es 'Encargado' -->
+        <div
+          class="col"
+          *ngIf="
+            currentUser.rol === 'Encargado' ||
+            currentUser.rol === 'Administrador'
+          "
+        >
+          <label class="input-label">Información del cliente:</label>
+          <div class="row info-client">
+            <p class="col">
+              <strong>Nombre: </strong>
+              {{ selectedCliente?.nombre }}
+            </p>
+            <p class="col">
+              <strong>Correo: </strong>
+              {{ selectedCliente?.correo }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Mostrar la información de la sucursal solo si el rol es 'Administrador' o 'Cliente' -->
+        <div
+          class="col"
+          *ngIf="
+            currentUser.rol === 'Administrador' || currentUser.rol === 'Cliente'
+          "
+        >
+          <label class="input-label">Información de la sucursal:</label>
+          <div class="row info-client">
+            <p class="col">
+              <strong>Nombre: </strong>
+              {{ sucursal?.nombre }}
+            </p>
+            <p class="col">
+              <strong>Correo: </strong>
+              {{ sucursal?.correo }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="input-label" for="producto">Productos</label>
+          <div class="row">
+            <mat-form-field class="custom-width">
+              <mat-select
+                #productoSelect
+                placeholder="Selecciona un producto"
+                formControlName="producto"
+                (selectionChange)="onProductoChange($event.value)"
+                multiple
+              >
+                <mat-option
+                  *ngFor="let item of listProductos"
+                  [value]="item.id"
+                >
+                  {{ item.nombre }} - ₡{{ item.precio }}
+                </mat-option>
+              </mat-select>
+
+              <mat-error> </mat-error>
+            </mat-form-field>
+            <button
+              type="button"
+              mat-raised-button
+              color="primary"
+              matTooltip="Agregar Producto"
+              aria-label="Agregar Producto"
+              (click)="addProductosSeleccionados()"
+              class="btn-addshopping"
+            >
+              <mat-icon class="icon-addshopping">add_shopping_cart</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="col">
+          <label class="input-label" for="servicio">Servicios</label>
+          <div class="row">
+            <mat-form-field class="custom-width">
+              <mat-select
+                #servicioSelect
+                placeholder="Selecciona un servicio"
+                formControlName="servicio"
+                (selectionChange)="onServicioChange($event.value)"
+                multiple
+              >
+                <mat-option
+                  *ngFor="let item of listServicios"
+                  [value]="item.id"
+                >
+                  {{ item.descripcion }} - ₡{{ item.precio }}
+                </mat-option>
+              </mat-select>
+
+              <mat-error> </mat-error>
+            </mat-form-field>
+            <button
+              type="button"
+              mat-raised-button
+              color="primary"
+              matTooltip="Agregar Servicio"
+              aria-label="Agregar Servicio"
+              (click)="addServiciosSeleccionados()"
+              class="btn-addshopping"
+            >
+              <mat-icon class="icon-addshopping">add_shopping_cart</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="input-label">Productos Agregados</label>
+          <table
+            [ngClass]="isCreate ? 'header-create' : 'header-update'"
+            mat-table
+            [dataSource]="productosDataSource"
+            class="mat-elevation-z2"
+          >
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let element">
+                <ng-container>
+                  {{ element.nombre }}
+                </ng-container>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>Precio</th>
+              <td mat-cell *matCellDef="let element">
+                ₡{{ element.precio | number : "1.2-2" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="impuesto">
+              <th mat-header-cell *matHeaderCellDef>Impuesto</th>
+              <td mat-cell *matCellDef="let element">{{ 0.05 }}%</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad" class="cant">
+              <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+              <td mat-cell *matCellDef="let element">
+                <input
+                  class="cant"
+                  matInput
+                  type="number"
+                  min="0"
+                  [value]="element.cantidad"
+                  (keydown)="onKeyDown($event)"
+                  (change)="onCantidadChange($event, element)"
+                />
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalLinea">
+              <th mat-header-cell *matHeaderCellDef>Total Línea</th>
+              <td mat-cell *matCellDef="let element">
+                ₡{{ element.totalLinea | number : "1.2-2" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="opciones">
+              <th mat-header-cell *matHeaderCellDef>Opciones</th>
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  matTooltip="Eliminar Producto"
+                  (click)="eliminarElemento(element.id, element.estado)"
+                  class="delete-button"
+                  type="button"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumnsProductos"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumnsProductos"
+            ></tr>
+          </table>
+        </div>
+        <div class="col">
+          <label class="input-label">Servicios Agregados</label>
+          <table
+            [ngClass]="isCreate ? 'header-create' : 'header-update'"
+            mat-table
+            [dataSource]="serviciosDataSource"
+            class="mat-elevation-z2"
+          >
+            <ng-container matColumnDef="descripcion">
+              <th mat-header-cell *matHeaderCellDef>Descripción</th>
+              <td mat-cell *matCellDef="let element">
+                <ng-container>
+                  {{ element.descripcion }}
+                </ng-container>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>Precio</th>
+              <td mat-cell *matCellDef="let element">
+                ₡{{ element.precio | number : "1.2-2" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="impuesto">
+              <th mat-header-cell *matHeaderCellDef>Impuesto</th>
+              <td mat-cell *matCellDef="let element">{{ 0.1 }}%</td>
+            </ng-container>
+
+            <ng-container matColumnDef="cantidad" class="cant">
+              <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+              <td mat-cell *matCellDef="let element">
+                <input
+                  class="cant"
+                  matInput
+                  type="number"
+                  min="0"
+                  [value]="element.cantidad"
+                  (keydown)="onKeyDown($event)"
+                  (change)="onCantidadChange($event, element)"
+                />
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="totalLinea">
+              <th mat-header-cell *matHeaderCellDef>Total Línea</th>
+              <td mat-cell *matCellDef="let element">
+                ₡{{ element.totalLinea | number : "1.2-2" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="opciones">
+              <th mat-header-cell *matHeaderCellDef>Opciones</th>
+              <td mat-cell *matCellDef="let element">
+                <button
+                  mat-icon-button
+                  matTooltip="Eliminar Servicio"
+                  (click)="eliminarElemento(element.id, element.estado)"
+                  class="delete-button"
+                  type="button"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumnsServicios"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumnsServicios"
+            ></tr>
+          </table>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col total">
+          <div class="total-container">
+            <h2 class="total-heading mid-width">
+              Total Productos:
+              <span class="total-amount"
+                >₡{{ totalProductos | number : "1.2-2" }}</span
+              >
+            </h2>
+            <h2 class="total-heading mid-width">
+              Total Servicios:
+              <span class="total-amount"
+                >₡{{ totalServicios | number : "1.2-2" }}</span
+              >
+            </h2>
+            <h1 class="total-summary">
+              Total:
+              <span> ₡{{ totalGeneral | number : "1.2-2" }}</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+    <br />
+    <mat-card-header>
+      <div class="example-button-row">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="onBack()"
+        >
+          <mat-icon>arrow_back</mat-icon>
+          Regresar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="onReset()"
+        >
+          <mat-icon>delete</mat-icon>
+          Limpiar
+        </button>
+        <button mat-raised-button class="green-button" type="submit">
+          <mat-icon>check</mat-icon>
+          {{ isCreate ? "Confirmar" : "Actualizar" }}
+        </button>
+      </div>
+    </mat-card-header>
+    <br />
+  </mat-card>
+</form>
+
+<!-- Div para spinner -->
+<div id="loader" class=""></div>
