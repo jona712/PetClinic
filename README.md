@@ -4,7 +4,7 @@ Veterinary Clinic Management.
 
 ## Description
 
-The "PetClinic" project is a web application developed using Angular, Angular Material, and pure CSS for custom styling. It focuses on managing various aspects of a veterinary clinic, including maintenance, billing, security, reservations (or appointments), and an integrated agenda created with Angular Calendar. The application also utilizes SweetAlert2 for interactive notifications and toast messages. With a goal of streamlining clinic operations, "PetClinic" provides a user-friendly interface for managing client interactions, scheduling appointments, and handling billing processes.
+The PetClinic project is a web application developed with Angular, Angular Material and pure CSS for custom styles. It focuses on managing various aspects of a veterinary clinic, including maintenance, billing, security, reservations (or appointments), and an integrated agenda created with Angular Calendar. The application also uses SweetAlert2 for interactive notifications and toasted messages. With the goal of streamlining clinic operations, PetClinic provides an easy-to-use interface for managing client interactions, scheduling appointments, and managing billing processes.
 
 ## Technologies Used
 
